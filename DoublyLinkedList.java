@@ -1,6 +1,6 @@
-public class DoublyLinkedList {
-    private Node first;
-    private Node last;
+public class DoublyLinkedList<T extends Comparable<T>> {
+    private Node<T> first;
+    private Node<T> last;
 
     public DoublyLinkedList(){
         this.first = null;
@@ -11,8 +11,8 @@ public class DoublyLinkedList {
         return first == null;
     }
 
-    public void insertFirst(int data){
-        Node newNode = new Node();
+    public void insertFirst(T data){
+        Node<T> newNode = new Node<>();
         newNode.data = data;
 
         if(isEmpty()){
@@ -28,8 +28,8 @@ public class DoublyLinkedList {
         this.first = newNode;
     }
 
-    public void insertLast(int data) {
-        Node newNode = new Node();
+    public void insertLast(T data) {
+        Node<T> newNode = new Node<>();
         newNode.data = data;
         if(isEmpty()){
             first = newNode;
@@ -43,9 +43,9 @@ public class DoublyLinkedList {
         last = newNode;
     }
 
-    public Node deleteFirst(){
+    public T deleteFirst(){
         if(!isEmpty()) {
-            Node temp = first;
+            Node<T> temp = first;
             // if there if only one item in the list.
             if(first.next == null){
                 last = null;
@@ -57,16 +57,16 @@ public class DoublyLinkedList {
             // replacing the firsts pointer
             first = first.next;
             //return the deleted node.
-            return temp;
+            return temp.data;
         } else{
             return null;
         }
 
     }
 
-    public Node deleteLast(){
+    public T deleteLast(){
         if(!isEmpty()) {
-            Node temp = last;
+            Node<T> temp = last;
             // if there if only one item in the list.
             if (first.next == null) {
                 first = null;
@@ -78,14 +78,14 @@ public class DoublyLinkedList {
             // replacing the firsts pointer
             last = last.previous;
             //return the deleted node.
-            return temp;
+            return temp.data;
         } else{
             return null;
         }
     }
 
-    public boolean insertBefore(int key, int data){
-        Node current = first;
+    public boolean insertBefore(T key, T data){
+        Node<T> current = first;
         while(current.data != key){
             current = current.next;
             if(current == null){
@@ -93,7 +93,7 @@ public class DoublyLinkedList {
             }
         }
 
-        Node newNode = new Node();
+        Node<T> newNode = new Node<>();
         newNode.data = data;
 
         if(current == first){
@@ -109,8 +109,8 @@ public class DoublyLinkedList {
         return true;
     }
 
-    public boolean insertAfter(int key, int data){
-        Node current = first;
+    public boolean insertAfter(T key, T data){
+        Node<T> current = first;
         //start looping through the list
         while(current.data != key){
             current = current.next;
@@ -120,7 +120,7 @@ public class DoublyLinkedList {
                 return false;
             }
         }
-        Node newNode = new Node();
+        Node<T> newNode = new Node<>();
         newNode.data = data;
 
         if(current == last){
@@ -138,8 +138,8 @@ public class DoublyLinkedList {
     }
 
     //deleting a node with a particualar key;
-    public Node deleteKey(int key){
-        Node current = first;
+    public T deleteKey(T key){
+        Node<T> current = first;
         while(current.data != key){
             current = current.next;
             if(current == null){
@@ -168,12 +168,12 @@ public class DoublyLinkedList {
         } else {
             current.next = null;
         }
-        return current;
+        return current.data;
     }
 
     public void displayForward(){
         System.out.println("first --> last");
-        Node current = first;
+        Node<T> current = first;
         while (current != null){
             current.displayNode();
             current = current.next;
@@ -182,7 +182,7 @@ public class DoublyLinkedList {
 
     public void displayBackWard(){
         System.out.println("last --> first");
-        Node current = last;
+        Node<T> current = last;
         while (current != null){
             current.displayNode();
             current = current.previous;

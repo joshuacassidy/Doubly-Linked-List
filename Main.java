@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
         doublyLinkedList.insertFirst(2);
         doublyLinkedList.insertLast(3);
         doublyLinkedList.insertAfter(3,4);
